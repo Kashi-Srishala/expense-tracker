@@ -11,12 +11,6 @@ const SignupForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      console.error('Passwords do not match');
-      setAlert('Passwords do not match');
-      return;
-    }
-
     try {
       let endpoint = '';
       let message = '';
@@ -25,6 +19,12 @@ const SignupForm = () => {
         endpoint = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAVIbdHb1HjOT4pjxuuD7s0sq-EzzC1uQo';
         message = 'Login successful!';
       } else {
+        if (password !== confirmPassword) {
+          console.error('Passwords do not match');
+          setAlert('Passwords do not match');
+          return;
+        }
+
         endpoint = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAVIbdHb1HjOT4pjxuuD7s0sq-EzzC1uQo';
         message = 'Signup successful!';
       }
@@ -54,7 +54,6 @@ const SignupForm = () => {
         console.error('Operation failed', errorData);
         setAlert('Operation failed');
         // Clear form fields
-
       }
     } catch (error) {
       console.error('Error:', error);

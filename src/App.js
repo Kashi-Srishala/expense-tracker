@@ -2,12 +2,13 @@ import './App.css';
 import SignupForm from './components/SignUp/SignUpForm';
 
 function App() {
+ 
+
   return (
-    <SignupForm></SignupForm>
+    <div>
+      <SignupForm />
+    </div>
   );
 }
 
 export default App;
-
-
-
