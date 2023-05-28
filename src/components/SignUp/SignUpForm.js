@@ -45,15 +45,16 @@ const SignupForm = () => {
         const data = await response.json();
         console.log('Operation successful', data);
         setAlert(message);
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
         // Do something after successful operation
       } else {
         const errorData = await response.json();
         console.error('Operation failed', errorData);
         setAlert('Operation failed');
         // Clear form fields
-        setEmail('');
-        setPassword('');
-        setConfirmPassword('');
+
       }
     } catch (error) {
       console.error('Error:', error);
