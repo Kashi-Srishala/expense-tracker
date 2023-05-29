@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const HomePage = ({ fullName}) => {
   return (
     <div className="profile-page">
