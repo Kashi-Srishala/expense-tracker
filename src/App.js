@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import SignupForm from './components/SignUp/SignUpForm';
 import HomePage from './components/HomePage/HomePage';
+import VerifyEmail from './components/SignUp/VerifyEmail';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,7 +24,12 @@ function App() {
     );
   }
 
-  return <HomePage fullName={fullName} profilePhotoUrl={profilePhotoUrl} />;
+  return (
+    <div>
+      <HomePage fullName={fullName} profilePhotoUrl={profilePhotoUrl} />
+      <VerifyEmail />
+    </div>
+  );
 }
 
 export default App;

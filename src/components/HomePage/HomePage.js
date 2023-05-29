@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HomePage = ({ fullName, profilePhotoUrl }) => {
+const HomePage = ({ fullName}) => {
   return (
     <div className="profile-page">
       <h2>Welcome, {fullName}!</h2>
