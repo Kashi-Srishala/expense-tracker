@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './SignupForm.css';
 
 const SignupForm = ({ onSuccessfulLogin }) => {
@@ -7,6 +8,7 @@ const SignupForm = ({ onSuccessfulLogin }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [alert, setAlert] = useState('');
   const [isLogin, setIsLogin] = useState(false);
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +18,8 @@ const SignupForm = ({ onSuccessfulLogin }) => {
       let message = '';
 
       if (isLogin) {
-        endpoint = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAVIbdHb1HjOT4pjxuuD7s0sq-EzzC1uQo';
+        endpoint =
+          'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAVIbdHb1HjOT4pjxuuD7s0sq-EzzC1uQo';
         message = 'Login successful!';
       } else {
         if (password !== confirmPassword) {
@@ -25,10 +28,12 @@ const SignupForm = ({ onSuccessfulLogin }) => {
           return;
         }
 
-        endpoint = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAVIbdHb1HjOT4pjxuuD7s0sq-EzzC1uQo';
+        endpoint =
+          'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAVIbdHb1HjOT4pjxuuD7s0sq-EzzC1uQo';
         message = 'Signup successful!';
       }
 
+      // Perform the API request and dispatch actions as needed
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
@@ -48,13 +53,11 @@ const SignupForm = ({ onSuccessfulLogin }) => {
         setEmail('');
         setPassword('');
         setConfirmPassword('');
-        // Call the onSuccessfulLogin callback with the user's information
         onSuccessfulLogin(data.displayName, data.photoUrl);
       } else {
         const errorData = await response.json();
         console.error('Operation failed', errorData);
         setAlert('Operation failed');
-        // Clear form fields
       }
     } catch (error) {
       console.error('Error:', error);

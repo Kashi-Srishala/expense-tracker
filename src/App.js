@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes, NavLink } from 'react-router-dom';
 import './App.css';
 import SignupForm from './components/SignUp/SignUpForm';
 import HomePage from './components/HomePage/HomePage';
 
+
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [fullName, setFullName] = useState('');
   const [profilePhotoUrl, setProfilePhotoUrl] = useState('');
+  const dispatch = useDispatch();
 
   const handleSuccessfulLogin = (name, photoUrl) => {
-    // Set the state variables and mark the user as logged in
     setFullName(name);
     setProfilePhotoUrl(photoUrl);
     setIsLoggedIn(true);
   };
 
   const handleLogout = () => {
-    // Clear the user data and mark the user as logged out
     setFullName('');
     setProfilePhotoUrl('');
     setIsLoggedIn(false);
