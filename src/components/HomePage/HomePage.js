@@ -24,7 +24,7 @@ const HomePage = () => {
     event.preventDefault();
 
     const newExpense = {
-      moneySpent,
+      moneySpent: parseInt(moneySpent),
       description,
       category,
     };
@@ -39,6 +39,9 @@ const HomePage = () => {
   const handleDeleteExpense = (index) => {
     dispatch({ type: 'DELETE_EXPENSE', payload: index });
   };
+
+  const totalExpenses = expenses.reduce((total, expense) => total + expense.moneySpent, 0);
+  const showActivatePremium = totalExpenses > 10000;
 
   return (
     <div>
@@ -91,6 +94,14 @@ const HomePage = () => {
           </ul>
         )}
       </div>
+
+      {showActivatePremium && (
+        <div>
+          <h2>Activate Premium:</h2>
+          <p>Your total expenses have exceeded 10000 rupees. Activate Premium to unlock additional features.</p>
+          <button>Activate Premium</button>
+        </div>
+      )}
     </div>
   );
 };
