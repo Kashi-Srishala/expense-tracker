@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { addExpense, deleteExpense } from '../Store/expensesActions';
 
 const HomePage = () => {
   const [moneySpent, setMoneySpent] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const expenses = useSelector((state) => state.expenses);
+  const darkMode = useSelector((state) => state.theme.darkMode);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const handleMoneySpentChange = (event) => {
     setMoneySpent(event.target.value);
@@ -29,7 +33,7 @@ const HomePage = () => {
       category,
     };
 
-    dispatch({ type: 'ADD_EXPENSE', payload: newExpense });
+    dispatch(addExpense(newExpense));
 
     setMoneySpent('');
     setDescription('');
@@ -37,14 +41,19 @@ const HomePage = () => {
   };
 
   const handleDeleteExpense = (index) => {
-    dispatch({ type: 'DELETE_EXPENSE', payload: index });
+    dispatch(deleteExpense(index));
   };
 
   const totalExpenses = expenses.reduce((total, expense) => total + expense.moneySpent, 0);
   const showActivatePremium = totalExpenses > 10000;
 
+  const handleThemeToggle = () => {
+    dispatch({ type: 'TOGGLE_THEME' });
+  };
+
   return (
-    <div>
+    <div className={darkMode ? 'dark-theme' : 'light-theme'}>
+      <button onClick={handleThemeToggle}>{darkMode ? 'Switch to Light Theme' : 'Switch to Dark Theme'}</button>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="moneySpent">Money Spent:</label>
@@ -71,12 +80,10 @@ const HomePage = () => {
             <option value="Food">Food</option>
             <option value="Petrol">Petrol</option>
             <option value="Salary">Salary</option>
-            {/* Add more categories as needed */}
           </select>
         </div>
         <button type="submit">Add Expense</button>
       </form>
-
       <div>
         <h2>Expenses:</h2>
         {expenses.length === 0 ? (
@@ -94,11 +101,8 @@ const HomePage = () => {
           </ul>
         )}
       </div>
-
       {showActivatePremium && (
         <div>
-          <h2>Activate Premium:</h2>
-          <p>Your total expenses have exceeded 10000 rupees. Activate Premium to unlock additional features.</p>
           <button>Activate Premium</button>
         </div>
       )}
