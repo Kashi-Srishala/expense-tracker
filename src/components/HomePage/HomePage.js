@@ -103,7 +103,7 @@ const HomePage = () => {
       </div>
       {showActivatePremium && (
         <div>
-          <button>Activate Premium</button>
+          <button onClick={handleThemeToggle}>{darkMode ? 'Activate to Basic' : 'Activate to Premium'}</button>
         </div>
       )}
     </div>

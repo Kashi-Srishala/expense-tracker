@@ -1,3 +1,104 @@
+/* App.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.expense-item .name {
+  flex: 1;
+}
+
+.expense-item .amount {
+  font-weight: bold;
+}
+
+.add-expense {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.add-expense input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-expense button {
+  margin-left: 10px;
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.premium-button {
+  margin-top: 20px;
+}
+
+.premium-button button {
+  padding: 8px 16px;
+  background-color: #ff9800;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dark-theme {
+  background-color: #333;
+  color: #fff;
+}
+
+.dark-theme .container {
+  background-color: #444;
+  color: #fff;
+}
+
+.dark-theme .add-expense input[type="text"],
+.dark-theme .premium-button button {
+  background-color: #555;
+  border-color: #777;
+}
+
+.dark-theme .expense-item {
+  background-color: #555;
+  color: #fff;
+}
+
+
+
 .App {
   text-align: center;
 }
