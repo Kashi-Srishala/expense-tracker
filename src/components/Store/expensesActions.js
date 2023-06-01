@@ -17,4 +17,12 @@ export const addExpense = (expense) => {
       type: 'ACTIVATE_PREMIUM',
     };
   };
+
+
+export const clearExpenses = () => {
+    return {
+      type: 'CLEAR_EXPENSES',
+    };
+  };
+  
   

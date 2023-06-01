@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, NavLink } from 'react-router-dom';
-import { Provider, useSelector } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './reducers';
 import './App.css';
 import SignupForm from './components/SignUp/SignUpForm';
 import HomePage from './components/HomePage/HomePage';
+import { clearExpenses } from './components/Store/expensesActions';
 
 const store = createStore(rootReducer);
 
@@ -19,6 +20,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [fullName, setFullName] = useState('');
   const [profilePhotoUrl, setProfilePhotoUrl] = useState('');
+  const dispatch = useDispatch();
 
   const handleSuccessfulLogin = (name, photoUrl) => {
     setFullName(name);
@@ -30,6 +32,8 @@ function App() {
     setFullName('');
     setProfilePhotoUrl('');
     setIsLoggedIn(false);
+    dispatch(clearExpenses());
+    window.location.reload();
   };
 
   return (
